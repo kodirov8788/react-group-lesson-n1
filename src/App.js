@@ -1,36 +1,36 @@
+import { useState } from "react"
 import "./App.css"
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/sidebar/Sidebar";
+import { data } from "./static_data"
 
 function App() {
+  const [click, setClick] = useState(false)
+  console.log(data)
+  console.log(click)
+  const openClose = () => {
+    if (click === false) {
+      setClick(true)
+    } else {
+      setClick(false)
+    }
 
-  let text = "bu text"
-  // console.log(text)
-  // let h1 = document.querySelector("h1")
-  // h1.innerText = text
-
-  let navbartext = "bu navbar uchun text"
-  const navbarfunc = () => {
-    console.log("navbar function ishladi")
-  }
-
-  let styleBox = {
-    backgroundColor: "blue",
-    color: "white"
-  }
-  let navbarStyle = {
-    backgroundColor: "pink",
-    color: "blue"
   }
   return (
     <div className="App">
-      <Navbar navbartext={navbartext} navbarfunc={navbarfunc} navbarstyle={navbarStyle} />
+      <Navbar click={openClose} />
+      <Sidebar result={click} />
+      <div className="cards">
+        {
+          data.map(item => (
+            <div style={{ background: "dodgerblue", margin: "10px" }}>
+              <img src={item.img} alt="" />
+              <h1>  {item.name}</h1>
 
-
-      <h1 style={{ backgroundColor: "red", fontStyle: "italic" }}>{text + " nima gap"}</h1>
-
-      <h1 style={styleBox}>{text + " nima gap" + "2"}</h1>
-      <Sidebar />
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@
     align-items: center;
 }
 
-.navbar svg {
-    color: red;
+
+.navbar button {
+    transform: translateX(500px);
 }
